@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <title>Signin Template · Bootstrap v5.3</title>
+    <link href="bootstrap-5.3.8-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="sign-in.css" rel="stylesheet" />
+    <script src="bootstrap-5.3.8-dist/js/bootstrap.min.js"></script>
+  </head>
+  <body class="d-flex align-items-center py-4 bg-secondary">
+    <main class="form-signin w-100 m-auto text-center">
+      <form action="/auth/proses-login" method="post">
+        <img
+          class="mb-1"
+          src="images/logo_nt_3.png"
+          alt="ngoding by thinking"
+          width="100"
+          height="auto"
+        />
+        <h1 class="h3 mb-3 fw-normal">Silahkan Masuk</h1>
+        <div class="form-floating">
+          <input
+            type="text"
+            name="form_username"
+            class="form-control"
+            id="floatingInput"
+            placeholder="username anda"
+          />
+          <label for="floatingInput">Username</label>
+        </div>
+        <div class="form-floating">
+          <input
+            type="password"
+            name="form_password"
+            class="form-control"
+            id="floatingPassword"
+            placeholder="Password"
+          />
+          <label for="floatingPassword">Password</label>
+        </div>
+        <button class="btn btn-primary w-100 py-2" type="submit">Masuk</button>
+        <p class="mt-5 mb-3 text-body-secondary">&copy; 2026</p>
+      </form>
+    </main>
+  </body>
+</html>
