@@ -10,7 +10,9 @@
     <script src="bootstrap-5.3.8-dist/js/bootstrap.min.js"></script>
   </head>
   <body class="d-flex align-items-center py-4 bg-secondary">
-    <main class="form-signin w-100 m-auto text-center">
+    <main
+      class="form-signin w-100 m-auto text-center border border-promary rounded-3"
+    >
       <form action="/auth/proses-login" method="post">
         <img
           class="mb-1"
@@ -19,6 +21,13 @@
           width="100"
           height="auto"
         />
+<% if (req.query.msg) { %>
+ <div class="alert alert-warning alert-dismissible fade show text-start" role="alert">
+  <strong>Mohon Maaf!</strong> <%= req.query.msg %>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<% } %>
+
         <h1 class="h3 mb-3 fw-normal">Silahkan Masuk</h1>
         <div class="form-floating">
           <input
@@ -41,7 +50,9 @@
           <label for="floatingPassword">Password</label>
         </div>
         <button class="btn btn-primary w-100 py-2" type="submit">Masuk</button>
-        <p class="mt-5 mb-3 text-body-secondary">&copy; 2026</p>
+        <p class="mt-5 mb-3 text-body-secondary">
+          Inventory App &copy; 2026 Develop by Fauzan Zohro
+        </p>
       </form>
     </main>
   </body>
