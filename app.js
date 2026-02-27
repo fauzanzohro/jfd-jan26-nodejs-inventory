@@ -32,6 +32,8 @@ app.get("/", c_beranda.index);
 app.get("/login", c_auth.form_login);
 app.post("/auth/proses-login", c_auth.proses_login);
 app.get("/dashboard", cek_login, c_dashboard.index);
+app.get("/form-pendaftaran", c_auth.form_pendaftaran);
+app.post("/auth/proses-daftar", c_auth.proses_daftar);
 
 app.listen(port, () => {
   console.log(`buka aplikasi di  http://localhost:${port}`);

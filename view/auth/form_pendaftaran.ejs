@@ -13,7 +13,7 @@
     <main
       class="form-signin w-100 m-auto text-center border border-promary rounded-3"
     >
-      <form action="/auth/proses-login" method="post">
+      <form action="/auth/proses-daftar" method="post">
         <img
           class="mb-1"
           src="images/logo_nt_3.png"
@@ -21,14 +21,7 @@
           width="100"
           height="auto"
         />
-<% if (req.query.msg) { %>
- <div class="alert alert-warning alert-dismissible fade show text-start" role="alert">
-  <strong>Mohon Maaf!</strong> <%= req.query.msg %>
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-<% } %>
-
-        <h1 class="h3 mb-3 fw-normal">Silahkan Masuk</h1>
+        <h1 class="h3 mb-3 fw-normal">Silahkan Daftar</h1>
         <div class="form-floating">
           <input
             type="text"
@@ -43,14 +36,24 @@
           <input
             type="password"
             name="form_password"
-            class="form-control"
+            class="form-control mb-0"
             id="floatingPassword"
             placeholder="Password"
           />
           <label for="floatingPassword">Password</label>
         </div>
-        <button class="btn btn-primary w-100 py-2" type="submit">Masuk</button>
-        <a class="text-body-secondary" href="/form-pendaftaran">Belum punya akun? Daftar sekarang</a>
+        <div class="form-floating">
+          <input
+            type="password"
+            name="form_konfirmasi_password"
+            class="form-control"
+            id="floatingPassword"
+            placeholder="Password"
+          />
+          <label for="floatingPassword">Konfirmasi Password</label>
+        </div>
+        <button class="btn btn-primary w-100 py-2" type="submit">Daftar</button>
+        <a class="text-body-secondary" href="/login">Sudah punya akun? Masuk</a>
         <p class="mt-5 mb-3 text-body-secondary">
           Inventory App &copy; 2026 Develop by Fauzan Zohro
         </p>

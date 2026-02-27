@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs");
 const m_user = require("../model/m_user");
+const { proses_tambah } = require("../../nodejs-expres/controller/c_karyawan");
 
 module.exports = {
   form_login: function (req, res) {
@@ -12,7 +13,6 @@ module.exports = {
     // res.send(req.body);
     let form_username = req.body.form_username;
     let form_password = req.body.form_password;
-
     let username_exist = await m_user.get_1_username(form_username);
     if (username_exist.length > 0) {
       // res.send("lanjut");
@@ -33,13 +33,44 @@ module.exports = {
   },
   cek_login: function (req, res, next) {
     //ppilihan 1 code manual simpan user ke req.session
-    // if (req.session.user) {
-    //   next();
-    // } else {
-    //   res.redirect("/login?msg=sesi anda telah habis");
-    // }
+    if (req.session.user) {
+      next();
+    } else {
+      res.redirect("/login?msg=sesi anda telah habis");
+    }
     //pakai fungsi bawaaan pasport(lebih scaleable)
-    if (req.isAuthenticated()) return next();
-    res.redirect("/login?msg=sesi anda telah habis");
+
+    //   console.log("isAuthenticated:", req.isAuthenticated());
+    //   console.log("user:", req.user);
+    //   console.log("session:", req.session);
+    //   if (req.isAuthenticated()) return next();
+    //   res.redirect("/login?msg=sesi anda telah habis");
+  },
+
+  form_pendaftaran: function (req, res) {
+    res.render("auth/form_pendaftaran");
+  },
+
+  proses_daftar: async function (req, res) {
+    try {
+      let form_password = req.body.form_password;
+      let form_konfirmasi_password = req.body.form_konfirmasi_password;
+      if (form_password !== form_konfirmasi_password) {
+        return res.redirect("/form-pendaftaran?msg=password tidak sama");
+      }
+      // res.send(hash_password);
+      let proses_tambah = await m_user.insert_1_karyawan(
+        req,
+        // username: req.body.form_username,
+        // password: hash_password,
+      );
+      if (proses_tambah.affectedRows > 0) {
+        return res.redirect("/login");
+      }
+    } catch (error) {
+      console.log(error);
+
+      res.send("gagal");
+    }
   },
 };
