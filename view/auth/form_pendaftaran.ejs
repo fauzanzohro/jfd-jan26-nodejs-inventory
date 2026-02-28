@@ -21,6 +21,12 @@
           width="100"
           height="auto"
         />
+        <% if (req.query.msg) { %>
+         
+          <div class="alert alert-warning" role="alert">
+             <strong>Mohon Maaf! </strong><%= req.query.msg %>
+          </div>
+        <% } %>
         <h1 class="h3 mb-3 fw-normal">Silahkan Daftar</h1>
         <div class="form-floating">
           <input

@@ -52,20 +52,28 @@ module.exports = {
   },
 
   form_pendaftaran: function (req, res) {
-    res.render("auth/form_pendaftaran");
+    res.render("auth/form_pendaftaran",
+      {
+        req:req
+      }
+    );
   },
 
   proses_daftar: async function (req, res) {
     try {
+
       let form_password = req.body.form_password;
       let form_konfirmasi_password = req.body.form_konfirmasi_password;
       if (form_password !== form_konfirmasi_password) {
         return res.redirect("/form-pendaftaran?msg=password tidak sama");
       }
       //cek dlu username yangsama  jika masih ada tolak jika tidak ada baru di insert
-      // let cek_username = await m_user.get_1_username(form_username);
-      // if (cek_username.length > 0) {
-      //   res.render("/form-pendaftaran?msg=username sudah ada");
+      let form_username= req.body.form_username;
+      let cek_username = await m_user.get_1_username(form_username);
+      if (cek_username.length > 0) {
+        res.redirect("/form-pendaftaran?msg=username sudah ada");
+        return
+      }
       // } else {
       // res.send(hash_password);
       let proses_tambah = await m_user.insert_1_karyawan(
