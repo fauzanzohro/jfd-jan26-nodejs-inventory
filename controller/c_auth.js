@@ -4,6 +4,10 @@ const { proses_tambah } = require("../../nodejs-expres/controller/c_karyawan");
 
 module.exports = {
   form_login: function (req, res) {
+    if (req.session.user) {
+      res.redirect("/dashboard");
+      return;
+    }
     res.render("auth/form_login", {
       req: req,
     });
@@ -58,6 +62,11 @@ module.exports = {
       if (form_password !== form_konfirmasi_password) {
         return res.redirect("/form-pendaftaran?msg=password tidak sama");
       }
+      //cek dlu username yangsama  jika masih ada tolak jika tidak ada baru di insert
+      // let cek_username = await m_user.get_1_username(form_username);
+      // if (cek_username.length > 0) {
+      //   res.render("/form-pendaftaran?msg=username sudah ada");
+      // } else {
       // res.send(hash_password);
       let proses_tambah = await m_user.insert_1_karyawan(
         req,
@@ -66,6 +75,7 @@ module.exports = {
       );
       if (proses_tambah.affectedRows > 0) {
         return res.redirect("/login");
+        // }
       }
     } catch (error) {
       console.log(error);
