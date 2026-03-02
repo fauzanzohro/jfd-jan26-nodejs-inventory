@@ -1,23 +1,27 @@
 <%- include('../layout/menu_atas') %>
 <%- include('../layout/side_bar') %>
+<%- include('../layout/notif_message') %>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-<h1 class="h2">Master Product</h1>
+    <h1 class="h2">Master Product</h1>
 </div>
-<div class="card">
-    <div class="card-title p-1">
-        <h1 class="h4 ms-2"> 
-List Product
-        </h1>
+<div class="card ">
+    <div class="card-title p-1 ">
+        <span class="h3">
+            List Product
+        </span>
+        <a href="/master-produk/create" class="btn btn-sm btn-primary float-end m-1">
+            <i class="fa-solid fa-plus"></i>
+        </a>
     </div>
     <div class="card-body">
-<table class="table table-hover table-bordered">
+<table class="table table-hover table-bordered text-center">
     <thead>
 
         <tr>
             <th>Kode</th>
             <th>Nama</th>
-            <th>Deskripsi</th>
-            <th>foto</th>
+            <th>Aksi</th>
+            
         </tr>
     </thead>
     <tbody>
@@ -26,8 +30,17 @@ List Product
             <tr>
                 <td><%= data_produk[i].kode %></td>
                 <td><%= data_produk[i].nama %></td>
-                <td><%= data_produk[i].deskripsi %></td>
-                <td><%= data_produk[i].foto %></td>
+                <td>
+                    <a href="#" class="btn btn-sm btn-info">
+                        <i class="fa-solid fa-eye"></i>Detail
+                    </a>
+                     <a href="#" class="btn btn-sm btn-warning">
+                        <i class="fa-regular fa-pen-to-square"></i>Edit
+                    </a>
+                     <a href="#" class="btn btn-sm btn-danger">
+                        <i class="fa-solid fa-trash-can"></i>Hapus
+                    </a>
+                </td>
             </tr>
         <% } %>
     </tbody>
