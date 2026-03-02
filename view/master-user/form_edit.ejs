@@ -1,0 +1,14 @@
+<%- include('../layout/menu_atas') %>
+<%- include('../layout/side_bar') %>
+<div class="d-flex flex-coloumn justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+<h1 class="h2">Master User</h1>
+</div>
+<% if (satu_user.length>0) { %>
+ <ul>
+    <li>
+        <%= satu_user[0].username %>
+    </li>
+ </ul>
+<% } %>
+
+<%- include('../layout/footer') %>

@@ -11,6 +11,10 @@ const c_dashboard = require("./controller/c_dashboard");
 const c_master_produk = require("./controller/c_master_produk");
 const c_master_user = require("./controller/c_master_user");
 
+
+
+
+
 //setting session untuk login
 app.use(
   session({
@@ -38,6 +42,7 @@ app.get("/form-pendaftaran", c_auth.form_pendaftaran);
 app.post("/auth/proses-daftar", c_auth.proses_daftar);
 app.get("/master-produk", cek_login, c_master_produk.index);
 app.get("/master-user", cek_login, c_master_user.index);
+app.get('/master-user/edit/:id_usr',cek_login,c_master_user.edit )
 
 app.listen(port, () => {
   console.log(`buka aplikasi di  http://localhost:${port}`);

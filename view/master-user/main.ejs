@@ -3,9 +3,35 @@
 <div class="d-flex flex-coloumn justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 <h1 class="h2">Master User</h1>
 </div>
-<table>
+<table class="table table-hover table-bordered">
     <thead>
-        <th> ayam</th>
+        <tr>
+            <th>Username</th>
+            <th>Password</th>
+            <th>id_karyawan</th>
+            <th>Role</th>
+            <th colspan="2">Aksi</th>
+        </tr>
     </thead>
+    <tbody>
+
+        <% for( let i = 0; i < semua_user.length; i++ ) { %>
+        
+            <tr>
+                <td><%= semua_user[i].username %></td>
+                <td><%= semua_user[i].password %></td>
+                <td><%= semua_user[i].id_karyawan %></td>
+                <td><%= semua_user[i].role %></td>
+                <td>
+                    <a href="/master-user/edit/<%= semua_user[i].id %>" class="btn btn-secondary">Edit</a>
+                </td>
+                   <td>
+                  <a href="#" class="btn btn-warning" >Hapus</a>
+                </td>
+                
+            </tr>
+        <% } %>
+    </tbody>
 </table>
+
 <%- include('../layout/footer') %>
