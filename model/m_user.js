@@ -71,7 +71,7 @@ module.exports = {
       });
     });
   },
-edit_1_user:()=>{
+  edit_1_user:(req)=>{
   let sql = mysql.format("UPDATE karyawan SET ? WHERE id=?", [
         {
           username: req.body.form_nama,

@@ -1,0 +1,24 @@
+<%- include('../layout/menu_atas') %>
+<%- include('../layout/side_bar') %>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+<h1 class="h2">Detail Produk</h1>
+</div>
+<table class="table table-hover table-bordered text-center">
+    <thead>
+
+        <tr>
+            <th>Kode</th>
+            <th>Nama</th>
+            <th>Deskripsi</th>
+            <th>Foto</th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td><%= detail_produk[0].kode %></td>
+                <td><%= detail_produk[0].nama %></td>
+                <td><%= detail_produk[0].deskripsi %></td>
+                <td><%= detail_produk[0].foto %></td>
+            </tr>
+    </tbody>
+</table>

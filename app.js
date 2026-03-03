@@ -3,6 +3,8 @@ const app = express();
 const port = 3000;
 const passport = require("passport");
 const session = require("express-session");
+const validation=require("express-joi-validations")
+
 //
 const c_beranda = require("./controller/c_beranda");
 const c_auth = require("./controller/c_auth");
@@ -45,6 +47,8 @@ app.get("/master-user", cek_login, c_master_user.index);
 app.get('/master-user/edit/:id_usr',cek_login,c_master_user.edit )
 app.get("/master-produk/create", cek_login, c_master_produk.form_tambah);
 app.post("/master-produk/insert", cek_login, c_master_produk.insert);
+app.get("/master-produk/details/:id_master_produk", cek_login, c_master_produk.detail);
+
 
 app.listen(port, () => {
   console.log(`buka aplikasi di  http://localhost:${port}`);

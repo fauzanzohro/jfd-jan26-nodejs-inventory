@@ -1,6 +1,5 @@
 const mysql = require("mysql2");
 const bcrypt = require("bcryptjs");
-const { insert } = require("../controller/c_master_produk");
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -41,16 +40,16 @@ module.exports = {
       });
     });
   },
-    // get_1_user:function (id_master_produk) {
-    //  let sql = mysql.format("SELECT * FROM master_produk WHERE master_produk.id=?", [id_master_produk]);
-    //  return new Promise(function (resolve, reject) {
-    //     db.query(sql, function (errorSql, hasil) {
-    //       if (errorSql) {
-    //         reject(errorSql);
-    //       } else {
-    //         resolve(hasil);
-    //       }
-    //     });
-    //   });
-    // },
+    get_1_produk:function (id_master_produk) {
+     let sql = mysql.format("SELECT * FROM master_produk WHERE master_produk.id=?", [id_master_produk]);
+     return new Promise(function (resolve, reject) {
+        db.query(sql, function (errorSql, hasil) {
+          if (errorSql) {
+            reject(errorSql);
+          } else {
+            resolve(hasil);
+          }
+        });
+      });
+    },
 }

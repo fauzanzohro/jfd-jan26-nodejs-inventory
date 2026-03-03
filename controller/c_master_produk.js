@@ -1,4 +1,6 @@
+const validation=require("express-joi-validations")
 const m_produk = require("../model/m_produk");
+
 
 
 module.exports = {
@@ -33,6 +35,13 @@ module.exports = {
         "/master-produk/create?error_msg=" + error.errorno + ":" + error.sqlMessege,
       );
     }
+ },
+
+ detail:async(req,res)=>{
+    let id_master_produk=req.params.id_master_produk;
+    res.render('master-produk/detail',{
+      detail_produk:await m_produk.get_1_produk(id_master_produk)
       }
-  
+    )
+ },
 };
