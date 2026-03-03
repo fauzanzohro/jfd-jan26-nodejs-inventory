@@ -1,5 +1,8 @@
 const validation=require("express-joi-validations")
 const m_produk = require("../model/m_produk");
+const { edit } = require("./c_master_user");
+const { edit_1_user } = require("../model/m_user");
+const { proses_edit } = require("../../nodejs-expres/controller/c_karyawan");
 
 
 
@@ -44,4 +47,27 @@ module.exports = {
       }
     )
  },
+
+ edit_1_produk:async(req,res)=>{
+  let id_master_produk=req.params.id_master_produk;
+  res.render("master-produk/form_edit",{
+    data_produk: await m_produk.get_1_produk(id_master_produk)
+  }
+  )
+ },
+
+ proses_edit: async (req,res)=>{
+try {
+      let proses_tambah = await m_produk.edit(req);
+      if (proses_tambah.affectedRows > 0) {
+        res.redirect("/master-produk?succes_msg=berhasil update produk");
+      }
+    } catch (error) {
+      console.log(error);
+      
+      res.redirect(
+        "/master-produk/edit/?error_msg=" + error.errorno + ":" + error.sqlMessege,
+      );
+    }
+ }
 };

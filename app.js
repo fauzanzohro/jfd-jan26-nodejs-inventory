@@ -48,6 +48,8 @@ app.get('/master-user/edit/:id_usr',cek_login,c_master_user.edit )
 app.get("/master-produk/create", cek_login, c_master_produk.form_tambah);
 app.post("/master-produk/insert", cek_login, c_master_produk.insert);
 app.get("/master-produk/details/:id_master_produk", cek_login, c_master_produk.detail);
+app.get("/master-produk/edit/:id_master_produk", cek_login, c_master_produk.edit_1_produk);
+app.post("/master-produk/proses-edit/:id_master_produk", cek_login, c_master_produk.proses_edit);
 
 
 app.listen(port, () => {

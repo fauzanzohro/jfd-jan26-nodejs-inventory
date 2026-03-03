@@ -1,0 +1,29 @@
+<%- include('../layout/menu_atas') %>
+<%- include('../layout/side_bar') %>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+<h1 class="h2">Edit Produk</h1>
+</div>
+<form action="/master-produk/proses-edit/<%= data_produk[0].id %>" method="post">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label  class="form-label">Kode Barang</label>
+                <input name="form_kode_barang" value="<%= data_produk[0].kode %>" type="text" class="form-control" >
+            </div>
+            
+            <div class="mb-3">
+                <label  class="form-label">Nama Barang</label>
+                <input type="text" name="form_nama_barang" value="<%= data_produk[0].nama %>" class="form-control" >
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Deskripsi</label>
+                <textarea name="form_deskripsi"  rows="10" class="form-control"> <%= data_produk[0].deskripsi %></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" >Update</button>
+            
+        </div>
+        </div>
+</form>
+<%- include('../layout/footer') %>
