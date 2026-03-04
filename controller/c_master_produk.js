@@ -1,8 +1,5 @@
 const validation=require("express-joi-validations")
 const m_produk = require("../model/m_produk");
-const { edit } = require("./c_master_user");
-const { edit_1_user } = require("../model/m_user");
-const { proses_edit } = require("../../nodejs-expres/controller/c_karyawan");
 
 
 
@@ -35,7 +32,7 @@ module.exports = {
     } catch (error) {
       console.log(error);
       res.redirect(
-        "/master-produk/create?error_msg=" + error.errorno + ":" + error.sqlMessege,
+        "/master-produk/create?error_msg= gagal mengirim data"+error ,
       );
     }
  },

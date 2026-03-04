@@ -8,14 +8,22 @@ module.exports = {
     });
   },
 
-  edit:async (req,res)=>{
+  detail:async (req,res)=>{
     let id_usr=req.params.id_usr;
-    res.render('master-user/form_edit',
+    res.render('master-user/form_detail',
       {
         satu_user:await m_user.get_1_user(id_usr)
       }
     )
+  },
 
-  
-  }
+  edit:async (req,res)=>{
+    let id_usr=req.params.id_usr;
+    res.render('master-user/form-edit',
+      {
+        edit_user:await m_user.get_1_user(id_usr),
+        role:await m_user.get_semua_role()
+      }
+    )
+  },
 };

@@ -3,31 +3,29 @@
 <div class="d-flex flex-coloumn justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 <h1 class="h2">Master User</h1>
 </div>
-<div class="row justify-content-center" >
-    <div class="col-md-8">
-        <table class="table table-hover table-bordered text-center">
+<table class="table table-hover table-bordered text-center">
             <thead>
                 <tr>
                     <th>Username</th>
+                    <th>Password</th>
+                    <th>id_karyawan</th>
                     <th>Role</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
-        
-                <% for( let i = 0; i < semua_user.length; i++ ) { %>
+        <% if (satu_user.length>0) { %>
                     <tr>
-                        <td><%= semua_user[i].username %></td>
-                        <td><%= semua_user[i].role %></td>
+                        <td> <%= satu_user[0].username %></td>
+                        <td><%=  satu_user[0].password %></td>
+                        <td><%=  satu_user[0].id_karyawan %></td>
+                        <td><%=  satu_user[0].role %></td>
                         <td>
-                            <a href="/master-user/detail/<%= semua_user[i].id %>" class="btn btn-secondary">Details</a>
-                            <a href="#" class="btn btn-warning" >Hapus</a>
+                            <a href="/master-user/edit/<%=satu_user[0].id %>" class="btn btn-warning" >Edit</a>
                         </td>                
                     </tr>
                 <% } %>
             </tbody>
         </table>
-    </div>
-</div>
 
 <%- include('../layout/footer') %>

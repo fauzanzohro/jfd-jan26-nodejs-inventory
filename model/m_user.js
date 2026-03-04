@@ -23,6 +23,20 @@ module.exports = {
     });
   },
 
+get_semua_role:function () {
+   let sql = mysql.format("SELECT role FROM user", [
+    ]);
+   return new Promise(function (resolve, reject) {
+      db.query(sql, function (errorSql, hasil) {
+        if (errorSql) {
+          reject(errorSql);
+        } else {
+          resolve(hasil);
+        }
+      });
+    });
+  },
+  
   get_1_user:function (id_usr) {
    let sql = mysql.format("SELECT * FROM user WHERE user.id=?", [id_usr]);
    return new Promise(function (resolve, reject) {
