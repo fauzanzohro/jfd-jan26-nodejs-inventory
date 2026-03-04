@@ -1,6 +1,8 @@
 <%- include('../layout/menu_atas') %>
 <%- include('../layout/side_bar') %>
 <%- include('../layout/notif_message') %>
+<%- include('../layout/notif_eror_validasi') %>
+
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 
 <h1 class="h2">Tambah Produk</h1>
@@ -10,9 +12,13 @@
         <div class="col-md-6">
             <div class="mb-3">
                 <label  class="form-label">Kode Barang</label>
-                <input name="form_kode_barang" type="text" class="form-control" >
+                <input name="form_kode_barang" type="text" class="form-control <%=(typeof pesanValidasi!== 'undefined' && 
+                pesanValidasi[0].path =='form_kode_barang')?'is-invalid':''%>" 
+                value="<%= (typeof pesanValidasi!== 'undefined' && 
+                pesanValidasi[0].path =='form_kode_barang')?pesanValidasi[0].value:''%>">
+
             </div>
-            
+   
             <div class="mb-3">
                 <label  class="form-label">Nama Barang</label>
                 <input type="text" name="form_nama_barang" class="form-control" >

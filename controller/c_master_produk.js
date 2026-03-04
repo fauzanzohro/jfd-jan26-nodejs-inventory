@@ -1,7 +1,13 @@
-const validation=require("express-joi-validations")
 const m_produk = require("../model/m_produk");
+const {body,query,validationResult}=require('express-validator');
 
-
+let validasi_insertProduk=
+[
+  body('form_kode_barang')
+  .notEmpty().withMessage('kode tidak boleh kosong')
+  .isAlphanumeric().withMessage('kode hanya boleh angka dan huruf')
+  .isLength({min:3,max:10}).withMessage('kode barang maksimal 5 karakter')
+]
 
 module.exports = {
   index: async function (req, res) {
@@ -21,7 +27,18 @@ module.exports = {
     );
   },
 
+validasi_insertProduk,
+
   insert:async(req,res)=>{
+    let validasi=validationResult(req);
+    if (validasi.errors.length>0) {
+      return res.render("master-produk/form-tambah",{
+          req:req,
+          pesanValidasi:validasi.array()
+      }
+      )
+    }
+    
     try {
       let proses_tambah = await m_produk.insert_1_produk(req);
       if (proses_tambah.affectedRows > 0) {
