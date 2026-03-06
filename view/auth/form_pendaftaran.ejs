@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
     <title>Ngoding by Thinking</title>
-    <link href="bootstrap-5.3.8-dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="sign-in.css" rel="stylesheet" />
-    <script src="bootstrap-5.3.8-dist/js/bootstrap.min.js"></script>
+    <link href="/bootstrap-5.3.8-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/sign-in.css" rel="stylesheet" />
+    <script src="/bootstrap-5.3.8-dist/js/bootstrap.min.js"></script>
   </head>
   <body class="d-flex align-items-center py-4 bg-secondary">
     <main
@@ -16,7 +16,7 @@
     <form action="/auth/proses-daftar" method="post">
         <img
           class="mb-1"
-          src="images/logo_nt_3.png"
+          src="/images/logo_nt_3.png"
           alt="ngoding by thinking"
           width="100"
           height="auto"
@@ -27,6 +27,16 @@
              <strong>Mohon Maaf! </strong><%= req.query.msg %>
           </div>
         <% } %>
+
+       <% if (typeof pesanValidasi!== 'undefined') { %>
+              <div class="m-3 alert alert-warning alert-dismissible fade show text-start" role="alert">
+                <i class="fa-solid fa-exclamation-triangle"></i> 
+                <%= pesanValidasi[0].msg %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+              <% } %>
+
+
         <h1 class="h3 mb-3 fw-normal">Silahkan Daftar</h1>
         <div class="form-floating">
           <input

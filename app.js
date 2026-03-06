@@ -3,6 +3,7 @@ const app = express();
 const port = 3000;
 const passport = require("passport");
 const session = require("express-session");
+const fileUpload =require('express-fileupload')
 // const fileUpload=require('express-fileupload')
 //
 const c_beranda = require("./controller/c_beranda");
@@ -29,7 +30,7 @@ app.use(
 );
 app.use(passport.initialize()); //cari tau fungsi
 app.use(passport.session()); //cari tau fungsi nya
-// app.use(fileUpload)
+app.use(fileUpload())
 
 app.use(express.urlencoded({ extended: false })); //untuk post
 app.set("view engine", "ejs"); //setting penggunaan template engine
@@ -41,13 +42,13 @@ app.get("/login", c_auth.form_login);
 app.post("/auth/proses-login", c_auth.proses_login);
 app.get("/dashboard", cek_login, c_dashboard.index);
 app.get("/form-pendaftaran", c_auth.form_pendaftaran);
-app.post("/auth/proses-daftar", c_auth.proses_daftar);
+app.post("/auth/proses-daftar",c_auth.validasiUser, c_auth.proses_daftar);
 app.get("/master-produk", cek_login, c_master_produk.index);
 app.get("/master-user", cek_login, c_master_user.index);
 app.get('/master-user/detail/:id_usr',cek_login,c_master_user.detail )
 app.get('/master-user/edit/:id_usr',cek_login,c_master_user.edit)
 app.get("/master-produk/create", cek_login, c_master_produk.form_tambah);
-app.post("/master-produk/insert", cek_login,c_master_produk.validasi_insertProduk, c_master_produk.insert);
+app.post("/master-produk/insert", cek_login,c_master_produk.validasi_insertProduk,c_master_produk.insert);
 app.get("/master-produk/details/:id_master_produk", cek_login, c_master_produk.detail);
 app.get("/master-produk/edit/:id_master_produk", cek_login, c_master_produk.edit_1_produk);
 app.post("/master-produk/proses-edit/:id_master_produk", cek_login, c_master_produk.proses_edit);

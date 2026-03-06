@@ -1,5 +1,4 @@
 const mysql = require("mysql2");
-const bcrypt = require("bcryptjs");
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -22,12 +21,13 @@ module.exports = {
     });
   },
   
-  insert_1_produk:function (req) {
+  insert_1_produk:function (req,filename) {
     let sql = mysql.format("INSERT INTO master_produk SET?", [
       {
-        kode:req.body.form_kode_barang.toUpperCase(),
+        kode:req.body.form_kode_barang,
         nama :req.body.form_nama_barang,
-        deskripsi:req.body.form_deskripsi
+        deskripsi:req.body.form_deskripsi,
+        foto        : (filename) ? filename : null,
       }
     ]);
     return new Promise(function (resolve, reject) {

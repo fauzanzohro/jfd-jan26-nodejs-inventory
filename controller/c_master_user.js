@@ -1,6 +1,5 @@
 const m_user=require('../model/m_user')
 
-
 module.exports = {
   index: async function (req, res) {
     res.render("master-user/main",{

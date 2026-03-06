@@ -20,6 +20,7 @@
         <tr>
             <th>Kode</th>
             <th>Nama</th>
+            <th>Foto</th>
             <th>Aksi</th>
             
         </tr>
@@ -30,6 +31,11 @@
             <tr>
                 <td><%= data_produk[i].kode %></td>
                 <td><%= data_produk[i].nama %></td>
+                        <td class="text-center">
+                            <% if (data_produk[i].foto) { %>
+                                <img src="/upload-image/<%= data_produk[i].foto %>" alt="foto produk <%= data_produk[i].nama %>" width="100">
+                            <% } %>
+                        </td>
                 <td>
                     <a href="/master-produk/details/<%= data_produk[i].id %>" class="btn btn-sm btn-info">
                         <i class="fa-solid fa-eye"></i>Detail

@@ -1,7 +1,14 @@
 const bcrypt = require("bcryptjs");
 const m_user = require("../model/m_user");
-const { proses_tambah } = require("../../nodejs-expres/controller/c_karyawan");
+const {body,query,validationResult}=require('express-validator')
 
+let validasiUser=[
+  body('form_password').notEmpty().withMessage('password tidak boleh kosong').
+  isLength({min:8}).withMessage('Password minimal 8')
+  ,
+  body('form_username').notEmpty().withMessage('Username Tidak Boleh sama')
+  .trim()
+]
 module.exports = {
   form_login: function (req, res) {
     if (req.session.user) {
@@ -51,6 +58,7 @@ module.exports = {
     //   res.redirect("/login?msg=sesi anda telah habis");
   },
 
+  
   form_pendaftaran: function (req, res) {
     res.render("auth/form_pendaftaran",
       {
@@ -58,8 +66,20 @@ module.exports = {
       }
     );
   },
+  
+  
+  validasiUser,
 
   proses_daftar: async function (req, res) {
+    let validasi=validationResult(req);
+    if (validasi.errors.length>0) {
+    return res.render("auth/form_pendaftaran",{
+      req:req,
+      pesanValidasi:validasi.array()
+    }
+    )
+      }
+
     try {
 
       let form_password = req.body.form_password;
