@@ -85,24 +85,30 @@ get_semua_role:function () {
       });
     });
   },
-  edit_1_user:(req)=>{
-  let sql = mysql.format("UPDATE karyawan SET ? WHERE id=?", [
-        {
-          username: req.body.form_nama,
-          password: req.body.form_tgl_lahir,
-          role: req.body.form_gender,
-        },
-        req.params.id,
-      ]);
-      return new Promise(function (resolve, reject) {
-        db.query(sql, function (errorSql, hasil) {
-          if (errorSql) {
-            reject(errorSql);
-          } else {
-            resolve(hasil);
-          }
+  edit:function (req) {
+    const saltedRound = 10;
+    let form_password = req.body.form_password;
+    let hash_password = bcrypt.hashSync(form_password, saltedRound);
+    let sql = mysql.format("UPDATE user SET ? WHERE id=?", [
+          {
+            username: req.body.form_username,
+            password: hash_password,
+            id_karyawan:req.body.form_idkry,
+            role:req.body.form_role
+          },
+          req.params.id_usr,
+        ]);
+        return new Promise(function (resolve, reject) {
+          db.query(sql, function (errorSql, hasil) {
+            if (errorSql) {
+              reject(errorSql);
+            } else {
+              resolve(hasil);
+            }
+          });
         });
-      });
-}
+  }
+  
+
 
 };

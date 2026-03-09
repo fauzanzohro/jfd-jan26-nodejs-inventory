@@ -48,6 +48,7 @@ app.post("/auth/proses-daftar",c_auth.validasiUser, c_auth.proses_daftar);
 app.get("/master-user", cek_login, c_master_user.index);
 app.get('/master-user/detail/:id_usr',cek_login,c_master_user.detail )
 app.get('/master-user/edit/:id_usr',cek_login,c_master_user.edit)
+app.post('/master-user/proses-edit/:id_usr',cek_login,c_master_user.proses_edit)
 
 app.get("/master-produk", cek_login, c_master_produk.index);
 app.get("/master-produk/create", cek_login, c_master_produk.form_tambah);

@@ -1,7 +1,10 @@
 const m_produk=require('../model/m_produk')
 const m_stok_produk=require('../model/m_stok_masuk')
+const {body,query,valdationResult}=require ('express-validator')
 
-
+// let validasiInput =[
+//     body('form_qty_masuk')
+// ]
 
 module.exports={
     index:async function (req,res) {

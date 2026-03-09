@@ -1,39 +1,43 @@
 <%- include('../layout/menu_atas') %>
 <%- include('../layout/side_bar') %>
 <div class="d-flex flex-coloumn justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-<h1 class="h2">Master User</h1>
+<h1 class="h2">Reset User</h1>
 </div>
-<h1>ini form edit user</h1>
 <form action="/master-user/proses-edit/<%= edit_user[0].id %>" method="post">
     <div class="row">
         <div class="col-md-6">
             <div class="mb-3">
-                <label  class="form-label">Username</label>
-                <input name="" value="<%= edit_user[0].username %>" type="text" class="form-control" >
+                <label  class="form-username">Username</label>
+                <input type="text" 
+                name="form_username" 
+                value="<%= edit_user[0].username %>"  class="form-control" >
             </div>
             
             <div class="mb-3">
-                <label  class="form-label">password</label>
-                <input type="text" name="" value="<%= edit_user[0].password %>" class="form-control" >
+                <label  class="form-password">password</label>
+                <input type="text" 
+                name="form_password" 
+                value="<%= edit_user[0].password %>" class="form-control" >
             </div>
-            
+<!--             
             <div class="mb-3">
-                <label class="form-label">id_karyawan</label>
-                <input type="text" name="" value="<%= edit_user[0].id_karyawan %>" class="form-control" >
+                <label class="form-id">id_karyawan</label>
+                <input type="text" name="form_idkry" 
+                value="<%= edit_user[0].id_karyawan %>" class="form-control" >
             </div>      
             <div class="mb-3">
                 <label class="form-label">Role</label>
-                <select name="">
+                <select name="form_role">
                     <option value="">--pilih--</option>
-                    <% for( let i = 0; i < role.length; i++ ) { %>
+                    <%# for( let i = 0; i < role.length; i++ ) { %>
                     <option 
-                        value="<%= role[i].role %>"
-                        <%= edit_user[0].role === role[i].role ? 'selected' : '' %>>
-                        <%= role[i].role %>
+                        value="<%#= role[i].role %>"
+                        <#%= edit_user[0].role === role[i].role ? 'selected' : '' %>>
+                        <#%= role[i].role %>
                     </option>
                     
-                    <% } %>
-                </select>
+                    <#% } %>
+                </select> -->
 
             </div>
             

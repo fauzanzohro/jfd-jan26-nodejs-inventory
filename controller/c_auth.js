@@ -1,6 +1,8 @@
 const bcrypt = require("bcryptjs");
 const m_user = require("../model/m_user");
 const {body,query,validationResult}=require('express-validator')
+const path =require ('path')
+
 
 let validasiUser=[
   body('form_password').notEmpty().withMessage('password tidak boleh kosong').
@@ -62,7 +64,7 @@ module.exports = {
   form_pendaftaran: function (req, res) {
     res.render("auth/form_pendaftaran",
       {
-        req:req
+        req:req,
       }
     );
   },
