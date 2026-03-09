@@ -13,7 +13,7 @@ const c_dashboard = require("./controller/c_dashboard");
 const c_master_produk = require("./controller/c_master_produk");
 const c_master_user = require("./controller/c_master_user");
 const c_stok_masuk = require("./controller/c_stok_masuk");
-
+const c_stok_keluar     = require('./controller/c_stok_keluar')
 
 
 
@@ -58,7 +58,11 @@ app.get("/master-produk/edit/:id_master_produk", cek_login, c_master_produk.edit
 app.post("/master-produk/proses-edit/:id_master_produk", cek_login, c_master_produk.proses_edit);
 
 app.get("/stok-masuk", cek_login, c_stok_masuk.index);
-app.post("/stok-masuk/proses-insert", cek_login, c_stok_masuk.proses_insert);
+app.post("/stok-masuk/proses-insert", cek_login,c_stok_masuk.validasiInput, c_stok_masuk.proses_insert);
+
+app.get("/stok-keluar", cek_login, c_stok_keluar.index);
+app.post("/stok-keluar/proses-insert", cek_login,c_stok_keluar.validasiInput, c_stok_keluar.proses_insert);
+
 
 
 app.listen(port, () => {
