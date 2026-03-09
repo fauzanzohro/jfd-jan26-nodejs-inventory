@@ -18,7 +18,11 @@
                 <td><%= detail_produk[0].kode %></td>
                 <td><%= detail_produk[0].nama %></td>
                 <td><%= detail_produk[0].deskripsi %></td>
-                <td><%= detail_produk[0].foto %></td>
+                <td>
+                     <% if (detail_produk[0].foto) { %>
+                        <img src="/upload-image/<%= detail_produk[0].foto %>" alt="foto produk <%= detail_produk[0].nama %>" width="100">
+                    <% } %>
+                </td>
             </tr>
     </tbody>
 </table>

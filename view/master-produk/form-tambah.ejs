@@ -13,7 +13,8 @@
         <div class="col-md-6">
             <div class="mb-3">
                 <label  class="form-label">Kode Barang</label>
-                <input name="form_kode_barang" type="text" class="form-control ">
+                <input name="form_kode_barang" type="text" class="form-control <%= (typeof pesanValidasi !== 'undefined' && pesanValidasi[0].path == 'form_kode_barang') ? 'is-invalid' : '' %>"
+                value="<%= (typeof pesanValidasi !== 'undefined' && pesanValidasi[0].path == 'form_kode_barang') ? pesanValidasi[0].value : '' %>"> 
 
             </div>
    
@@ -33,7 +34,8 @@
                 <div id="preview_foto" class="align-items-center"></div>
             </div>
             
-            <button type="submit" class="btn btn-primary" >Simpan</button>
+            <button type="submit" class="btn btn-primary" >
+                <i class="fa-solid fa-floppy-disk"></i> Simpan</button>
             
         </div>
         </div>
@@ -47,12 +49,12 @@
             let size    = this.files[0].size
             let maxsize = (5120 * 1024)
             if (size > maxsize) {
-                $('#submit_edit_foto').prop('disabled', true)
+                // $('#submit_edit_foto').prop('disabled', true)
                 $('#preview_foto').empty()
-                $('#edit_infouploadfoto').empty().append(`<i class="fe fe-16 fe-alert-triangle text-danger"></i> <span class="text-danger">File size exceeds the limit: 5 MB.</span>`)
+                // $('#edit_infouploadfoto').empty().append(`<i class="fe fe-16 fe-alert-triangle text-danger"></i> <span class="text-danger">File size exceeds the limit: 5 MB.</span>`)
             } else {
-                $('#submit_edit_foto').prop('disabled', false)
-                $('#edit_infouploadfoto').empty()
+                // $('#submit_edit_foto').prop('disabled', false)
+                // $('#edit_infouploadfoto').empty()
                 if (add_foto && type.split('/')[0] == 'image') {
                     $('#preview_foto').empty().append(
                         `<img src="${window.URL.createObjectURL(this.files[0])}" class="w-100" alt="foto profil user">`
@@ -60,7 +62,7 @@
                 }
             }
         } else {
-            $('#submit_edit_foto').prop('disabled', false)
+            // $('#submit_edit_foto').prop('disabled', false)
             $('#preview_foto').empty()
         }
     })

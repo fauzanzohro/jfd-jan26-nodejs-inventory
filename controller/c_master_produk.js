@@ -57,7 +57,7 @@ validasi_insertProduk,
                 foto.mv(folder_simpan, async function(errorUpload) {
                     // jika upload gagal
                     if (errorUpload) {
-                        return res.status(500).send(err)
+                        return res.status(500).send(errorUpload)
                     }
                 })
             }

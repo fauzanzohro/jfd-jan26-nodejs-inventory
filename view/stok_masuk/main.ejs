@@ -1,0 +1,40 @@
+<%- include('../layout/menu_atas') %>
+<%- include('../layout/side_bar') %>
+<%- include('../layout/notif_message') %>
+
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+
+<h1 class="h2">Stok Masuk</h1>
+</div>
+<form action="/stok-masuk/proses-insert" method="post">
+    <div class="row">
+        <div class="col-12">
+            <div class="mb-3">
+               <label  class="form-label">Nama Barang</label>
+               <select name="form_kode_barang" id="" class="form-select">
+                   <option value="">--pilih--</option>
+                   <% for( let i = 0; i < dataProduk.length; i++ ) { %>
+                    <option value="<%= dataProduk[i].kode%>"><%= dataProduk[i].kode + " - " + dataProduk[i].nama%></option>
+                
+                <% } %>
+                </select>
+
+             </div>
+              <div class="mb-3">
+                <label  class="form-label">Qty Stok Masuk</label>
+                <input type="number" name="form_qty_masuk" class="form-control">
+             </div>
+            <button type="submit" class="btn btn-primary" >
+                <i class="fa-solid fa-floppy-disk"></i>Simpan</button>
+
+        </div>
+    </div>
+            
+
+
+
+</form>
+
+
+<%- include('../layout/footer') %>
