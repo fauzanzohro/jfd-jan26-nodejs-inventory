@@ -93,8 +93,6 @@ get_semua_role:function () {
           {
             username: req.body.form_username,
             password: hash_password,
-            id_karyawan:req.body.form_idkry,
-            role:req.body.form_role
           },
           req.params.id_usr,
         ]);

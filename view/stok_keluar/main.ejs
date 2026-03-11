@@ -17,8 +17,7 @@
                <select name="form_kode_barang" id="" class="form-select">
                    <option value="">--pilih--</option>
                    <% for( let i = 0; i < dataProduk.length; i++ ) { %>
-                    <option value="<%= dataProduk[i].kode%>"><%= dataProduk[i].kode + " - " + dataProduk[i].nama%></option>
-                
+                    <option value="<%= dataProduk[i].kode%>"><%= dataProduk[i].kode + " - " + dataProduk[i].nama%></option> 
                 <% } %>
                 </select>
 
@@ -32,10 +31,6 @@
 
         </div>
     </div>
-            
-
-
-
 </form>
 
 

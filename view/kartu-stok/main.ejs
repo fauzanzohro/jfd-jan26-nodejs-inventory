@@ -1,0 +1,56 @@
+<%- include('../layout/menu_atas') %>
+<%- include('../layout/side_bar') %>
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Kartu Stok</h1>
+</div>
+
+   <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <%= (req.params.kode_produk) ? req.params.kode_produk : 'Pilih Kode Produk' %>
+            </button>
+            <ul class="dropdown-menu">
+                <% for( let i = 0; i < produk.length; i++ ) { %>
+                    <li>
+                        <a class="dropdown-item <%= (req.params.kode_produk == produk[i].kode) ? 'bg-info' : '' %>" href="/kartu-stok/<%= produk[i].kode %>">
+                            <%= produk[i].kode %> - <%= produk[i].nama %>
+                        </a>
+                    </li>
+                <% } %>
+            </ul>
+    <% if (stok_barang.length > 0) { %>
+    <div class="row">
+        <div class="col-6">
+            <div class="row">
+                <div class="col-3">Kode Produk</div>
+                <div class="col-6">: <%= stok_barang[0].kode %></div>
+            </div>
+            <div class="row">
+                <div class="col-3">Nama Produk</div>
+                <div class="col-6">: <%= stok_barang[0].nama %></div>
+            </div>
+        </div>
+    </div>
+    <% } %>
+<table class="table table-striped table-hover ">
+    <thead>
+        <th class="text-capitalize">tanggal</th>
+        <th class="text-capitalize">masuk</th>
+        <th class="text-capitalize">keluar</th>
+        <th class="text-capitalize">sisa</th>
+        <th class="text-capitalize">user</th>
+    </thead>
+    <tbody>
+        <% for( let i = 0; i < stok_barang.length; i++ ) { %>
+            <tr>
+                <td><%=moment(stok_barang[i].created_at).format('DD MMMM YYYY - HH:mm')%></td>
+                <td><%=stok_barang[i].stok_masuk %></td>
+                <td><%=stok_barang[i].stok_keluar %></td>
+                <td><%=stok_barang[i].stok_sisa %></td>
+                <td><%=stok_barang[i].username %></td>
+            </tr>
+            <% } %>
+    </tbody>
+</table>
+
+<%- include('../layout/footer') %>

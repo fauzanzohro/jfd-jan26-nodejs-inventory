@@ -27,6 +27,25 @@ module.exports =
         })
     },
 
+ get_semua_produk_by_kode: function(kode_produk) {
+        let sql = mysql.format(
+            `SELECT stok_produk.*,master_produk.nama,user.username
+            FROM stok_produk
+            JOIN master_produk ON master_produk.kode=stok_produk.kode
+            JOIN user ON user.id=stok_produk.created_by
+            WHERE stok_produk.kode = ? ORDER BY id ASC;`,[kode_produk] 
+        )
+
+        return new Promise( function(resolve,reject) {
+            db.query(sql, function(errorSql, hasil) {
+                if (errorSql) {
+                    reject(errorSql)
+                } else {
+                    resolve(hasil)
+                }
+            })
+        })
+    },
 
 
     insert_stok_masuk: function(req, stok_terbaru) {
