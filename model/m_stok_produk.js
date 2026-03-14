@@ -13,7 +13,12 @@ module.exports =
 {
     get_produk_by_kode: function(req) {
         let sql = mysql.format(
-            'SELECT * FROM stok_produk WHERE kode = ? ORDER BY id DESC LIMIT 1;', [req.body.form_kode_barang]
+              `SELECT kode, stok_sisa, created_at 
+            FROM (
+                SELECT DISTINCT kode, stok_sisa, created_at 
+                FROM stok_produk ORDER BY created_at DESC
+            ) AS dummyTable
+            GROUP BY kode;`, 
         )
 
         return new Promise( function(resolve,reject) {
@@ -27,9 +32,9 @@ module.exports =
         })
     },
 
- get_semua_produk_by_kode: function(kode_produk) {
+ get_semua_produk_by_kode: function(kode_produk ) {
         let sql = mysql.format(
-            `SELECT stok_produk.*,master_produk.nama,user.username
+           `SELECT stok_produk.*,master_produk.nama,user.username
             FROM stok_produk
             JOIN master_produk ON master_produk.kode=stok_produk.kode
             JOIN user ON user.id=stok_produk.created_by

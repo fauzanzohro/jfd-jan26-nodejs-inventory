@@ -113,4 +113,10 @@ module.exports = {
       res.send("gagal");
     }
   },
+
+  logout: function (req, res) {
+    req.session.destroy(function () {
+      res.redirect('/login?msg=anda telah keluar aplikasi')
+    })
+  },
 };

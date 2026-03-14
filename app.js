@@ -18,7 +18,6 @@ const c_kartu_stok = require("./controller/c_kartu_stok");
 
 
 
-
 //setting session untuk login
 app.use(
   session({
@@ -45,6 +44,7 @@ app.post("/auth/proses-login", c_auth.proses_login);
 app.get("/dashboard", cek_login, c_dashboard.index);
 app.get("/form-pendaftaran", c_auth.form_pendaftaran);
 app.post("/auth/proses-daftar",c_auth.validasiUser, c_auth.proses_daftar);
+app.post("/logout",c_auth.logout)
 
 app.get("/master-user", cek_login, c_master_user.index);
 app.get('/master-user/detail/:id_usr',cek_login,c_master_user.detail )

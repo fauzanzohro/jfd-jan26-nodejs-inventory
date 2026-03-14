@@ -105,7 +105,7 @@ get_semua_role:function () {
             }
           });
         });
-  }
+  },
   
 
 
