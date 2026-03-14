@@ -43,7 +43,7 @@
                      <a href="/master-produk/edit/<%= data_produk[i].id %>" class="btn btn-sm btn-warning">
                         <i class="fa-regular fa-pen-to-square"></i>Edit
                     </a>
-                     <a href="#" class="btn btn-sm btn-danger">
+                     <a href="/master-produk/hapus/<%= data_produk[i].id %>" onclick="return confirm('hapus data produk <%= data_produk[i].nama %>')" class="btn btn-sm btn-danger">
                         <i class="fa-solid fa-trash-can"></i>Hapus
                     </a>
                 </td>

@@ -57,6 +57,8 @@ app.post("/master-produk/insert", cek_login,c_master_produk.validasi_insertProdu
 app.get("/master-produk/details/:id_master_produk", cek_login, c_master_produk.detail);
 app.get("/master-produk/edit/:id_master_produk", cek_login, c_master_produk.edit_1_produk);
 app.post("/master-produk/proses-edit/:id_master_produk", cek_login, c_master_produk.proses_edit);
+app.get("/master-produk/hapus/:id_master_produk", cek_login, c_master_produk.hapus);
+
 
 app.get("/stok-masuk", cek_login, c_stok_masuk.index);
 app.post("/stok-masuk/proses-insert", cek_login,c_stok_masuk.validasiInput, c_stok_masuk.proses_insert);

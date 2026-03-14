@@ -41,7 +41,7 @@ validasi_insertProduk,
       )
     }
     try {
-       console.log(req.body);
+            console.log(req.body);
             console.log(req.files);
             let foto = req.files.form_upload_foto
             let filename = ''
@@ -68,8 +68,8 @@ validasi_insertProduk,
         );
       }
     } catch (error) {
-      console.log(error);
-      console.log(req.body)
+      // console.log(error);
+      // console.log(req.body)
       res.redirect(
         "/master-produk/create?error_msg= gagal mengirim data"+error ,
       );
@@ -94,7 +94,25 @@ validasi_insertProduk,
 
  proses_edit: async (req,res)=>{
 try {
-      let proses_tambah = await m_produk.edit(req);
+   let foto = req.files.form_upload_foto
+            let filename = ''
+            if (foto) {
+                // ganti nama file asli
+                let kode_barang     = req.body.form_kode_barang
+                let datetime        = moment().format('YYMMDD_HHmmss')
+                let extension_name  = path.extname(foto.name)
+                filename            = kode_barang + '-' + datetime + extension_name
+                let folder_simpan   = path.join(__dirname, '../public/upload-image', filename)
+
+                // pakai function mv() untuk meletakkan file di suatu folder/direktori
+                foto.mv(folder_simpan, async function(errorUpload) {
+                    // jika upload gagal
+                    if (errorUpload) {
+                        return res.status(500).send(errorUpload)
+                    }
+                })
+            }
+      let proses_tambah = await m_produk.edit(req,filename);
       if (proses_tambah.affectedRows > 0) {
         res.redirect("/master-produk?succes_msg=berhasil update produk");
       }
@@ -105,5 +123,13 @@ try {
         "/master-produk/edit/?error_msg=" + error.errorno + ":" + error.sqlMessege,
       );
     }
- }
+ },
+
+ hapus:async(req,res)=>{
+  let id_master_produk=req.params.id_master_produk;
+  let proses_hapus=await m_produk.hapus(id_master_produk);
+  if (proses_hapus.affectedRows>0) {
+    res.redirect("/master-produk");
+  }
+ }, 
 };

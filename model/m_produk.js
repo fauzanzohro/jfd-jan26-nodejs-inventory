@@ -53,11 +53,12 @@ module.exports = {
       });
     },
 
-    edit:function (req) {
+    edit:function (req,filename) {
      let sql = mysql.format("UPDATE master_produk SET ? WHERE id=?", [{
       kode:req.body.form_kode_barang.toUpperCase(),
       nama:req.body.form_nama_barang,
       deskripsi:req.body.form_deskripsi,
+      foto        : (filename) ? filename : null
      },
     req.params.id_master_produk]);
      return new Promise(function (resolve, reject) {
@@ -70,5 +71,19 @@ module.exports = {
         });
       });
     },
+
+     hapus:function (id_master_produk) {
+     let sql = mysql.format("DELETE FROM master_produk WHERE id =?", [id_master_produk]);
+     return new Promise(function (resolve, reject) {
+        db.query(sql, function (errorSql, hasil) {
+          if (errorSql) {
+            reject(errorSql);
+          } else {
+            resolve(hasil);
+          }
+        });
+      });
+    },
+    
     
 }
